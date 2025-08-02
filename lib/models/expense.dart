@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
+
+final formatter = DateFormat.yMd();
 
 const categoryIcons = {
   Category.food: Icons.restaurant,
@@ -26,7 +29,7 @@ class Expense {
   final DateTime date;
   final Category category;
 
-  // String get formattedDate {
-  //   return date
-  // }
+  String get formattedDate {
+    return formatter.format(date);
+  }
 }
