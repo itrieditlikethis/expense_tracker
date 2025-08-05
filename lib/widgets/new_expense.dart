@@ -10,6 +10,14 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
+  final _addNewExpenseController = TextEditingController();
+
+  @override
+  void dispose() {
+    _addNewExpenseController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,6 +29,7 @@ class _NewExpenseState extends State<NewExpense> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: _addNewExpenseController,
               maxLength: 50,
               decoration: InputDecoration(label: Text("what expense?")),
               keyboardType: TextInputType.text,
