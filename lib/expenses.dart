@@ -36,16 +36,18 @@ class _Expenses extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('charts'),
-            Expanded(child: ExpensesList(expenses: _registeredExpenses)),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text("Expense tracker"),
+        actions: [TextButton(onPressed: () {}, child: Text("add"))],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('charts'),
+          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+        ],
       ),
     );
   }
