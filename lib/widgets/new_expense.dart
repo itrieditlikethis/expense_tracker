@@ -51,12 +51,17 @@ class _NewExpenseState extends State<NewExpense> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(this.context);
+                  },
+                  child: Text("Cancel"),
+                ),
+                ElevatedButton(
                   onPressed: () => print(
                     '${_addNewExpenseController.text} / ${_addAmmountController.text}',
                   ),
                   child: Text('Save'),
                 ),
-                ElevatedButton(onPressed: () {}, child: Text("Cancel")),
               ],
             ),
           ],
