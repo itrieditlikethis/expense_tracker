@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
 
-final formatter = DateFormat.yMd();
+final formatter = DateFormat('dd-MM-yyy');
 
 const categoryIcons = {
   Category.food: Icons.restaurant,
