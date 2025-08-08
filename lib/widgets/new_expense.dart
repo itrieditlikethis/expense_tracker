@@ -14,8 +14,9 @@ class _NewExpenseState extends State<NewExpense> {
   final _addNewExpenseController = TextEditingController();
   final _addAmmountController = TextEditingController();
   DateTime? _selectedDate;
+  Category _selectedCategory = Category.transport;
 
-  void _presentDatePicker() async {
+  void _onSelectDate() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
     final pickedDate = await showDatePicker(
@@ -25,6 +26,12 @@ class _NewExpenseState extends State<NewExpense> {
     );
     setState(() {
       _selectedDate = pickedDate;
+    });
+  }
+
+  void _onSelectCategory(Category category) {
+    setState(() {
+      _selectedCategory = category;
     });
   }
 
@@ -73,7 +80,7 @@ class _NewExpenseState extends State<NewExpense> {
                   children: [
                     Text(formatter.format(_selectedDate ?? DateTime.now())),
                     IconButton(
-                      onPressed: _presentDatePicker,
+                      onPressed: _onSelectDate,
                       icon: const Icon(Icons.calendar_month),
                     ),
                   ],
@@ -84,6 +91,21 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(category.name.toUpperCase()),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  // if (value == null) return;
+                  _onSelectCategory(value ?? Category.food);
+                },
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
