@@ -12,7 +12,7 @@ class NewExpense extends StatefulWidget {
 
 class _NewExpenseState extends State<NewExpense> {
   final _addNewExpenseController = TextEditingController();
-  final _addAmmountController = TextEditingController();
+  final _addAmountController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.transport;
 
@@ -20,6 +20,7 @@ class _NewExpenseState extends State<NewExpense> {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
     final pickedDate = await showDatePicker(
+      initialDate: now,
       context: context,
       firstDate: firstDate,
       lastDate: now,
@@ -35,10 +36,31 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _submitNewExpenseData() {
+    final enteredAmount = double.tryParse(_addAmountController.text);
+    final isInvalidAmount = enteredAmount == null || enteredAmount <= 0;
+    if (_addNewExpenseController.text.trim().isEmpty ||
+        isInvalidAmount ||
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid input'),
+          content: const Text("Please fill all fields to save"),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx), child: Text('Ok')),
+          ],
+        ),
+      );
+      return;
+    }
+  }
+
   @override
   void dispose() {
     _addNewExpenseController.dispose();
-    _addAmmountController.dispose();
+    _addAmountController.dispose();
     _selectedDate = null;
     super.dispose();
   }
@@ -64,7 +86,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
-                  controller: _addAmmountController,
+                  controller: _addAmountController,
                   maxLength: 6,
                   decoration: InputDecoration(
                     label: Text('amount'),
@@ -78,7 +100,11 @@ class _NewExpenseState extends State<NewExpense> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(formatter.format(_selectedDate ?? DateTime.now())),
+                    Text(
+                      _selectedDate != null
+                          ? formatter.format(_selectedDate ?? DateTime.now())
+                          : "enter date",
+                    ),
                     IconButton(
                       onPressed: _onSelectDate,
                       icon: const Icon(Icons.calendar_month),
@@ -112,7 +138,10 @@ class _NewExpenseState extends State<NewExpense> {
                 },
                 child: Text("Cancel"),
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Save')),
+              ElevatedButton(
+                onPressed: _submitNewExpenseData,
+                child: Text('Save'),
+              ),
             ],
           ),
         ],
