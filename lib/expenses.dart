@@ -60,6 +60,16 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContentToShow = const Center(
+      child: Text('No expense found. Add some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContentToShow = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Expense tracker"),
@@ -73,12 +83,7 @@ class _ExpensesState extends State<Expenses> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text('charts'),
-          Expanded(
-            child: ExpensesList(
-              expenses: _registeredExpenses,
-              onRemoveExpense: _removeExpense,
-            ),
-          ),
+          Expanded(child: mainContentToShow),
         ],
       ),
     );
