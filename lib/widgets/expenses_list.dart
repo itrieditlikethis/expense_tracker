@@ -14,16 +14,16 @@ class ExpensesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(expenses.length);
     return ListView.builder(
+      padding: EdgeInsets.all(20),
       itemCount: expenses.length,
       itemBuilder: (context, index) => Dismissible(
         // creates keys for dismissible widgets
         key: ValueKey(expenses[index]),
+
         onDismissed: (direction) {
           onRemoveExpense(expenses[index]);
         },
-
         direction: DismissDirection.endToStart,
         child: ExpenseItem(expense: expenses[index]),
       ),
