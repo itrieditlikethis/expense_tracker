@@ -12,9 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = View.of(context).platformDispatcher.platformBrightness;
-    TextTheme textTheme = createTextTheme(context, "Abel", "Abel");
+    TextTheme textTheme = createTextTheme(context, "DM Sans", "Abel");
     MaterialTheme theme = MaterialTheme(textTheme);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Expense tracker',
       theme: brightness == Brightness.light ? theme.light() : theme.dark(),
       home: const Expenses(),

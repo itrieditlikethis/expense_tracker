@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
@@ -144,13 +144,13 @@ class _NewExpenseState extends State<NewExpense> {
                   _onSelectCategory(value ?? Category.food);
                 },
               ),
-              ElevatedButton(
+              FilledButton.tonal(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 child: Text("Cancel"),
               ),
-              ElevatedButton(
+              FilledButton(
                 onPressed: _submitNewExpenseData,
                 child: Text('Save'),
               ),

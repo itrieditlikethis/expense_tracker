@@ -343,6 +343,13 @@ class MaterialTheme {
       bodyColor: colorScheme.onSurface,
       displayColor: colorScheme.onSurface,
     ),
+    appBarTheme: AppBarTheme(
+      elevation: 4,
+      shadowColor: colorScheme.shadow,
+      centerTitle: true,
+      titleTextStyle: textTheme.headlineMedium,
+      actionsIconTheme: IconThemeData(color: colorScheme.onPrimary),
+    ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
   );
