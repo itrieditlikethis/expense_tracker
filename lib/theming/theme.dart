@@ -356,6 +356,12 @@ class MaterialTheme {
       color: colorScheme.secondaryContainer,
       margin: EdgeInsets.only(bottom: 10, left: 0, right: 0, top: 10),
     ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: colorScheme.primary,
+      actionTextColor: colorScheme.onPrimary,
+
+      contentTextStyle: textTheme.labelLarge,
+    ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
   );
