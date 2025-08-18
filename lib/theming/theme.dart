@@ -350,6 +350,12 @@ class MaterialTheme {
       titleTextStyle: textTheme.headlineMedium,
       actionsIconTheme: IconThemeData(color: colorScheme.onPrimary),
     ),
+    cardTheme: CardThemeData(
+      surfaceTintColor: colorScheme.surfaceTint,
+      elevation: 4,
+      color: colorScheme.secondaryContainer,
+      margin: EdgeInsets.only(bottom: 10, left: 0, right: 0, top: 10),
+    ),
     scaffoldBackgroundColor: colorScheme.surface,
     canvasColor: colorScheme.surface,
   );

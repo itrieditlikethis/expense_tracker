@@ -101,6 +101,7 @@ class _ExpensesState extends State<Expenses> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
+          SizedBox(height: 20),
           Text('Charts', style: Theme.of(context).textTheme.headlineLarge),
           Expanded(child: mainContentToShow),
         ],
