@@ -347,10 +347,9 @@ class MaterialTheme {
       elevation: 4,
       shadowColor: colorScheme.shadow,
       centerTitle: true,
-      // foregroundColor: colorScheme.onPrimary,
-      // backgroundColor: colorScheme.primary,
+      foregroundColor: colorScheme.onPrimary,
+      backgroundColor: colorScheme.primary,
       titleTextStyle: textTheme.headlineMedium,
-      actionsIconTheme: IconThemeData(color: colorScheme.onPrimary),
     ),
     cardTheme: CardThemeData(
       surfaceTintColor: colorScheme.surfaceTint,

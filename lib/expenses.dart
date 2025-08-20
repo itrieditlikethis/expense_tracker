@@ -90,9 +90,9 @@ class _ExpensesState extends State<Expenses> {
       appBar: AppBar(
         title: Text("Expense tracker"),
         actions: [
-          IconButton.filled(
+          FilledButton.tonal(
             onPressed: _openAddExpenseOverlay,
-            icon: Icon(Icons.add),
+            child: Icon(Icons.add),
           ),
         ],
       ),
@@ -102,7 +102,7 @@ class _ExpensesState extends State<Expenses> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: 20),
-          Text('Charts', style: Theme.of(context).textTheme.headlineLarge),
+          Text('Charts'),
           Expanded(child: mainContentToShow),
         ],
       ),
