@@ -347,9 +347,11 @@ class MaterialTheme {
       elevation: 4,
       shadowColor: colorScheme.shadow,
       centerTitle: true,
+      iconTheme: IconThemeData().copyWith(color: colorScheme.onPrimary),
+      toolbarTextStyle: textTheme.headlineMedium,
       foregroundColor: colorScheme.onPrimary,
       backgroundColor: colorScheme.primary,
-      titleTextStyle: textTheme.headlineMedium,
+      // titleTextStyle: textTheme.headlineMedium,
     ),
     cardTheme: CardThemeData(
       surfaceTintColor: colorScheme.surfaceTint,

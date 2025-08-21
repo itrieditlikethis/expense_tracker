@@ -4,7 +4,11 @@ import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
+  // TODO
+  // const Expenses({super.key, required this.onChangeColorScheme});
   const Expenses({super.key});
+  // TODO
+  // final void Function(BuildContext context) onChangeColorScheme;
 
   @override
   State<StatefulWidget> createState() {
@@ -88,11 +92,19 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
       appBar: AppBar(
+        // TODO
+        // leading: IconButton(
+        //   onPressed: () => widget.onChangeColorScheme(context),
+        //   icon: Icon(Icons.color_lens),
+        // ),
         title: Text("Expense tracker"),
         actions: [
-          FilledButton.tonal(
-            onPressed: _openAddExpenseOverlay,
-            child: Icon(Icons.add),
+          Padding(
+            padding: const EdgeInsets.only(right: 25.0),
+            child: FilledButton.tonal(
+              onPressed: _openAddExpenseOverlay,
+              child: Icon(Icons.add),
+            ),
           ),
         ],
       ),
