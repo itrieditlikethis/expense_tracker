@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:flutter/material.dart';
 
 class Chart extends StatelessWidget {
@@ -35,20 +36,22 @@ class Chart extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       width: double.infinity,
-      height: 180,
+      height: 200,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                for (final bucket in buckets) // alternative to map()
-                  Text("bar"),
-              ],
+              children: buckets.map((bucket) {
+                final barFill = bucket.totalExpenses == 0.0
+                    ? 0.0
+                    : bucket.totalExpenses / maxTotalCategory;
+                return ChartBar(fill: barFill);
+              }).toList(),
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
           Row(
             children: buckets
                 .map(
