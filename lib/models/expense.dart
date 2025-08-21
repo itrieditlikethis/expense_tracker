@@ -50,7 +50,7 @@ class ExpenseBucket {
   double get totalExpenses {
     double sum = expenses.fold(
       0,
-      (prevExpenseAmmount, expense) => prevExpenseAmmount + expense.amount,
+      (prevExpenseAmount, expense) => prevExpenseAmount + expense.amount,
     );
     return sum;
   }
