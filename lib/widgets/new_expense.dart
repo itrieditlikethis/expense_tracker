@@ -79,84 +79,92 @@ class _NewExpenseState extends State<NewExpense> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsGeometry.all(30),
-      child: Column(
-        spacing: 30,
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            controller: _addNewExpenseController,
-            maxLength: 50,
-            decoration: InputDecoration(label: Text("what expense?")),
-            keyboardType: TextInputType.text,
-          ),
-          Row(
-            spacing: 30,
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _addAmountController,
-                  maxLength: 6,
-                  decoration: InputDecoration(
-                    label: Text('amount'),
-                    prefixText: '\$ ',
+    final mediaQuKeyboardSpace = MediaQuery.of(context).viewInsets.bottom;
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsetsGeometry.fromLTRB(
+          30,
+          30,
+          30,
+          30 + mediaQuKeyboardSpace,
+        ),
+        child: Column(
+          spacing: 30,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _addNewExpenseController,
+              maxLength: 50,
+              decoration: InputDecoration(label: Text("what expense?")),
+              keyboardType: TextInputType.text,
+            ),
+            Row(
+              spacing: 30,
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _addAmountController,
+                    maxLength: 6,
+                    decoration: InputDecoration(
+                      label: Text('amount'),
+                      prefixText: '\$ ',
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                  keyboardType: TextInputType.number,
                 ),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      _selectedDate != null
-                          ? formatter.format(_selectedDate ?? DateTime.now())
-                          : "enter date",
-                    ),
-                    IconButton(
-                      onPressed: _onSelectDate,
-                      icon: const Icon(Icons.calendar_month),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              DropdownButton(
-                value: _selectedCategory,
-                items: Category.values
-                    .map(
-                      (category) => DropdownMenuItem(
-                        value: category,
-                        child: Text(category.name.toUpperCase()),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        _selectedDate != null
+                            ? formatter.format(_selectedDate ?? DateTime.now())
+                            : "enter date",
                       ),
-                    )
-                    .toList(),
-                onChanged: (value) {
-                  // if (value == null) return;
-                  _onSelectCategory(value ?? Category.food);
-                },
-              ),
-              FilledButton.tonal(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("Cancel"),
-              ),
-              FilledButton(
-                onPressed: _submitNewExpenseData,
-                child: Text('Save'),
-              ),
-            ],
-          ),
-        ],
+                      IconButton(
+                        onPressed: _onSelectDate,
+                        icon: const Icon(Icons.calendar_month),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DropdownButton(
+                  value: _selectedCategory,
+                  items: Category.values
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(category.name.toUpperCase()),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    // if (value == null) return;
+                    _onSelectCategory(value ?? Category.food);
+                  },
+                ),
+                FilledButton.tonal(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Cancel"),
+                ),
+                FilledButton(
+                  onPressed: _submitNewExpenseData,
+                  child: Text('Save'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
