@@ -81,6 +81,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuWidth = MediaQuery.of(context).size.width;
+    final mediaQuHeight = MediaQuery.of(context).size.height;
     Widget mainContentToShow = const Center(
       child: Text('No expense found. Add some!'),
     );
@@ -109,16 +111,23 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: 20),
-          Chart(expenses: _registeredExpenses),
-          Expanded(child: mainContentToShow),
-        ],
-      ),
+      body: mediaQuWidth < mediaQuHeight
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 20),
+                Chart(expenses: _registeredExpenses),
+                Expanded(child: mainContentToShow),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(child: mainContentToShow),
+              ],
+            ),
     );
   }
 }

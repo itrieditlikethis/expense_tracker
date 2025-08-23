@@ -4,12 +4,17 @@ import 'package:expense_tracker/theming/util.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // TODO
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((_) => runApp(const MyApp()));
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  // TODO
   // void _changeColorScheme(BuildContext context) {
   //   showDialog(
   //     context: context,
